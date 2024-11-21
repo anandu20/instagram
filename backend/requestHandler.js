@@ -13,6 +13,8 @@ const transporter = nodemailer.createTransport({
 
 export async function verifyEmail(req,res) {
     const {email}=req.body;
+    console.log(email);
+    
     const otp=Math.floor(Math.random()*1000000);
      // send mail with defined transport object
     const info = await transporter.sendMail({
@@ -48,6 +50,7 @@ export async function verifyEmail(req,res) {
         }
         h1 {
             color: #4CAF50;
+
         }
         p {
             font-size: 16px;
@@ -77,7 +80,7 @@ export async function verifyEmail(req,res) {
         <p>Thank you for signing up! Please check your inbox and click on the verification link we sent to your email address.</p>
         <p>If you don't see the email in your inbox, please check your spam or junk folder.</p>
         
-        <a href="#" class="button">Resend Verification Email</a>
+        <a href="http://localhost:5173/register" class="button">Verify Email</a>
 
         <div class="footer">
             <p>If you didn't request this, please ignore this email.</p>
@@ -91,19 +94,10 @@ export async function verifyEmail(req,res) {
     // console.log("Message sent: %s", info.messageId);
     // Message sent: <d786aa62-4e0a-070a-47ed-0b0666549519@ethereal.email>
     userSchema.create({email}).then(()=>{
-        console.log(otp);
         return res.status(201).send({msg:"OTP succefully sent",email});
     }).catch((error)=>{
         return res.status(404).send({msg:"Error occured"})
     })
-}
-
-export async function checkOtp(req,res) {
-    const {email,otp}=req.body;
-    const check=await userSchema.findOne({$and:[{email:email},{otp:otp}]})
-    if(!check)
-        return res.status(403).send({msg:"Otp does not match"})
-    return res.status(200).send({msg:"OTP matched successfully"})
 }
 
 export async function signUp(req,res) {
@@ -116,7 +110,7 @@ export async function signUp(req,res) {
             return res.status(404).send({msg:"password not matched"})
         bcrypt.hash(password,10).then((hashedPassword)=>{
             console.log(hashedPassword);
-            userSchema.updateOne({email},{$set:{otp:"",username,password:hashedPassword}}).then(()=>{
+            userSchema.updateOne({email},{$set:{username,password:hashedPassword}}).then(()=>{
                 return res.status(201).send({msg:"success"});
             }).catch((error)=>{
                 return res.status(404).send({msg:"Not registered"})
