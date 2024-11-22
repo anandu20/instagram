@@ -1,6 +1,6 @@
 import React from 'react'
 import '../css/Login.css'
-import {useNavigate} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 
 import { useState } from 'react';
 const Login = () => {
@@ -49,6 +49,9 @@ const Login = () => {
                 <input type="password" id="password" name="password" onChange={handleChange}/>
             </div>
             <button type="submit" className="btns">Sign In</button>
+            <p> Dont have an Account?  <Link to={'/register'}>Sign Up</Link></p> 
+
+           
         </form>
     </div>
 </div>

@@ -1,5 +1,6 @@
 import React,{useState} from "react";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios'
 import "../css/Email.css";
 
 const Email =()=>{
@@ -16,14 +17,25 @@ const Email =()=>{
     }
     const  handleSubmit= async(e)=>{
         e.preventDefault()
-        console.log(email);
-        const res=await fetch("http://localhost:3000/api/verifyemail",{
-            method: "POST",
-            headers:{"Content-Type":"Application/json"},
-            body:JSON.stringify(email)
-        })
+        // console.log(email);
+        // const res=await fetch("http://localhost:3000/api/verifyemail",{
+        //     method: "POST",
+        //     headers:{"Content-Type":"Application/json"},
+        //     body:JSON.stringify(email)
+        // })
+        const res=await axios.post("http://localhost:3000/api/verifyemail",{email},{Headers:{"Content-Type":"Application/json"}});
         console.log(res);
-        navigate('/login')
+        
+        console.log(res.data.msg);
+        if(res.status==201){
+            localStorage.setItem('email',email);
+            alert(res.data.msg);
+            navigate('/login')
+        }
+        else{
+            alert(res.data.msg)
+        }
+        
         
     }
     return(

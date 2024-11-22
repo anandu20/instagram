@@ -1,5 +1,5 @@
 import React from 'react'
-import {useNavigate} from 'react-router-dom';
+import {Link,useNavigate} from 'react-router-dom';
 import '../css/Signup.css'
 
 import { useState } from 'react';
@@ -53,6 +53,10 @@ const Signup = () => {
             <input type="password" id="cpassword" name="cpassword" onChange={handleChange}/>
         </div>
         <button type="submit" className="btn">Sign Up</button>
+
+        <p> Already have an Account?  <Link to={'/login'}>Log in</Link></p> 
+
+   
     </form>
 </div>
 </div>
