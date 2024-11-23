@@ -23,17 +23,17 @@ const Email =()=>{
         //     headers:{"Content-Type":"Application/json"},
         //     body:JSON.stringify(email)
         // })
-        const res=await axios.post("http://localhost:3000/api/verifyemail",{email},{Headers:{"Content-Type":"Application/json"}});
+        const res=await axios.post("http://localhost:3000/api/verifyemail",email);
+        console.log(res.data.msg); 
         console.log(res);
         
-        console.log(res.data.msg);
-        if(res.status==201){
-            localStorage.setItem('email',email);
+        if(res.status===201){
+            localStorage.setItem('email',email.email);
             alert(res.data.msg);
             navigate('/login')
         }
         else{
-            alert(res.data.msg)
+            alert(result.msg)
         }
         
         

@@ -1,6 +1,6 @@
 .cont {
     width: 400px;
-    height: 500px;
+    height: 400px;
     margin: 50px auto;
     padding: 20px;
     background-color: #fff;
@@ -76,3 +76,4 @@ input[type="password"]:focus {
 .login-link a:hover {
     text-decoration: underline;
 }
+

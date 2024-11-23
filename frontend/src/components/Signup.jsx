@@ -4,10 +4,11 @@ import '../css/Signup.css'
 
 import { useState } from 'react';
 const Signup = () => {
+    const email = localStorage.getItem('email')
     const navigate=useNavigate()
     const [emp,setEmp]=useState({
         username:"",
-        email:"",
+        email:email,
         password:"",
         cpassword:""
 
@@ -40,10 +41,10 @@ const Signup = () => {
             <label htmlFor="username">Username</label>
             <input type="text" id="username" name="username" onChange={handleChange}/>
         </div>
-        <div className="form-groups">
+        {/* <div className="form-groups">
             <label htmlFor="email">Email</label>
             <input type="email" id="email" name="email" onChange={handleChange}/>
-        </div>
+        </div> */}
         <div className="form-groups">
             <label htmlFor="password">Password</label>
             <input type="password" id="password" name="password" onChange={handleChange}/>
@@ -54,7 +55,9 @@ const Signup = () => {
         </div>
         <button type="submit" className="btn">Sign Up</button>
 
-        <p> Already have an Account?  <Link to={'/login'}>Log in</Link></p> 
+       <div>
+       <p> Already have an Account?  <Link to={'/login'}>Log in</Link></p> 
+       </div>
 
    
     </form>

@@ -26,7 +26,12 @@ const Login = () => {
             body:JSON.stringify(logins)
         })
         console.log(res);
-        navigate('/')
+        const result=await res.json();
+        console.log(result);
+        localStorage.setItem('Auth',result.token)
+        if(res.status==200){
+            navigate('/');
+        }
 
     }
   return (
@@ -49,7 +54,11 @@ const Login = () => {
                 <input type="password" id="password" name="password" onChange={handleChange}/>
             </div>
             <button type="submit" className="btns">Sign In</button>
-            <p> Dont have an Account?  <Link to={'/register'}>Sign Up</Link></p> 
+
+            <div>
+            <p> Dont have an Account?  <Link to={'/email'}>Sign Up</Link></p> 
+            </div>
+           
 
            
         </form>

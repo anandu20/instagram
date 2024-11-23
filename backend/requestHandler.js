@@ -130,6 +130,8 @@ export async function signIn(req,res) {
     if(!(email&&password))
         return res.status(404).send({msg:"feilds are empty"})
     const user=await userSchema.findOne({email})
+    console.log("u");
+    
     console.log(user);
     if(user===null)
         return res.status(404).send({msg:"invalid email"})

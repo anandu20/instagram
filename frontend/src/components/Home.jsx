@@ -5,7 +5,7 @@ const Home = () => {
   const navigate=useNavigate()
   let auth;
   useEffect(()=>{
-    auth=sessionStorage.getItem('Auth')
+    auth=localStorage.getItem('Auth')
     if(auth==null){
       navigate('/login')
     }
