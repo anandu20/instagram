@@ -1,6 +1,8 @@
 import React from 'react'
 import '../css/Login.css'
-import {Link, useNavigate} from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 import { useState } from 'react';
 const Login = () => {
@@ -20,17 +22,22 @@ const Login = () => {
     const handleSubmit=async(e)=>{
         e.preventDefault();
         console.log(logins);
-        const res = await fetch("http://localhost:3000/api/signin",{
-            method:"POST",
-            headers:{"Content-Type":"application/json"},
-            body:JSON.stringify(logins)
-        })
+        // const res = await fetch("http://localhost:3000/api/signin",{
+        //     method:"POST",
+        //     headers:{"Content-Type":"application/json"},
+        //     body:JSON.stringify(logins)
+        // })
+        const res = await axios.post("http://localhost:3000/api/signin",user,{Headers:{"Content-Type":"application/json"}})
         console.log(res);
-        const result=await res.json();
-        console.log(result);
-        localStorage.setItem('Auth',result.token)
+        console.log(res.data.msg);
         if(res.status==200){
-            navigate('/');
+            localStorage.setItem('Auth',res.data.token)
+            alert(res.data.msg)
+            navigate('/')
+        }
+        else{
+            alert(res.data.msg);
+            alert("error")
         }
 
     }

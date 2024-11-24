@@ -1,6 +1,8 @@
 import React from 'react'
 import {Link,useNavigate} from 'react-router-dom';
 import '../css/Signup.css'
+import axios from 'axios'
+
 
 import { useState } from 'react';
 const Signup = () => {
@@ -22,13 +24,23 @@ const Signup = () => {
     const handleSubmit=async(e)=>{
         e.preventDefault();
         console.log(emp);
-        const res = await fetch("http://localhost:3000/api/signup",{
-            method:"POST",
-            headers:{"Content-Type":"application/json"},
-            body:JSON.stringify(emp)
-        })
+        // const res = await fetch("http://localhost:3000/api/signup",{
+        //     method:"POST",
+        //     headers:{"Content-Type":"application/json"},
+        //     body:JSON.stringify(emp)
+        // })
+        const res = await axios.post("http://localhost:3000/api/signup",user,{Headers:{"Content-Type":"application/json"}})
         console.log(res);
-        navigate('/login')
+        console.log(res.data.msg);
+        if(res.status==200){
+            localStorage.removeItem('email')
+            alert(res.data.msg)
+            navigate('/login')
+        }
+        else{
+            alert(res.data.msg);
+        }
+
 
     }
   return (
