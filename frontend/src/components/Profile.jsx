@@ -11,37 +11,28 @@ const Profile = ({setUser,setProfile}) => {
     const [posts,setPost]=useState([])
     useEffect(()=>{
         getDetails();
-        getPosts();
+        // getPosts();
       },[])
     const getDetails=async()=>{
         if(value!==null){
         try {
           const res=await axios.get("http://localhost:3000/api/profile",{headers:{"Authorization":`Bearer ${value}`}})
         if (res.status==200) {
+          console.log(res.data.username);
+          
           // setUserName(res.data.username);
+          // console.log("dsd");
           setUser(res.data.username);
-          setProfile(res.data.profile.profile);
-          setData(res.data.profile)
-        }else if (res.status==403){
-          alert(res.data.msg);
-          navigate('/login')
-        }
-        else{
-          navigate('/login')
-        }
-        } catch (error) {
-          console.log("error");
-          navigate('/login')
-        }
-        }else{
-          navigate('/login')
+          // if(res.data.profile)
+          //   setProfile(res.data.profile.profile);
+          setProfile
         }
       }
-    const getPosts=async()=>{
-      const res=await axios.get("http://localhost:3000/api/getPost",{headers:{"Authorization":`Bearer ${value}`}})
-      // console.log(res.data);
-      setPost(res.data)
-    }
+    // const getPosts=async()=>{
+    //   const res=await axios.get("http://localhost:3000/api/getPost",{headers:{"Authorization":`Bearer ${value}`}})
+    //   // console.log(res.data);
+    //   setPost(res.data)
+    // }
 
     
   return (

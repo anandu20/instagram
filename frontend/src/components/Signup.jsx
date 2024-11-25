@@ -29,10 +29,10 @@ const Signup = () => {
         //     headers:{"Content-Type":"application/json"},
         //     body:JSON.stringify(emp)
         // })
-        const res = await axios.post("http://localhost:3000/api/signup",user,{Headers:{"Content-Type":"application/json"}})
+        const res = await axios.post("http://localhost:3000/api/signup",emp,{Headers:{"Content-Type":"application/json"}})
         console.log(res);
         console.log(res.data.msg);
-        if(res.status==200){
+        if(res.status==201){
             localStorage.removeItem('email')
             alert(res.data.msg)
             navigate('/login')

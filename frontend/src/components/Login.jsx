@@ -27,7 +27,7 @@ const Login = () => {
         //     headers:{"Content-Type":"application/json"},
         //     body:JSON.stringify(logins)
         // })
-        const res = await axios.post("http://localhost:3000/api/signin",user,{Headers:{"Content-Type":"application/json"}})
+        const res = await axios.post("http://localhost:3000/api/signin",logins,{Headers:{"Content-Type":"application/json"}})
         console.log(res);
         console.log(res.data.msg);
         if(res.status==200){

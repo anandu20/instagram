@@ -9,6 +9,8 @@ import Profile from "./components/Profile";
 
 const App=()=>{
   const [user,setUser]=useState("");
+  const [profile,setProfile]=useState("");
+
   console.log(`appuser ${ user}`);
 
   return(
@@ -19,7 +21,7 @@ const App=()=>{
       <Route path='/login' Component={Login}/>
       <Route path='/email' Component={Email}/>
       <Route path='/register' Component={Signup}/>
-      <Route path='/profile' Component={Profile}/>
+      <Route path='/profile' element={<Profile setUser={setUser} setProfile={setProfile}/>}/>
 
 
    

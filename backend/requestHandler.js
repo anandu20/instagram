@@ -148,6 +148,24 @@ export async function signIn(req,res) {
     return res.status(200).send({msg:"Succefully logged in",token})
 }
 
+export async function profile(req,res){
+    try{
+        console.log("fdf");
+        
+            const _id=req.user.userId;
+            const user=await userSchema.findOne({_id});
+            console.log(user);
+            
+            if(!user){
+                return res.status(403).send({msg:"Unauthorized Access"})
+            }
+            // const profile=await profileSchema.findOne({userId:_id})
+            res.status(200).send({username:user.username})
+        }catch(error){
+            res.status(404).send({msg:"error"})
+        }
+   }
+
 export async function Home(req,res) {
     try {
   
@@ -162,4 +180,10 @@ export async function Home(req,res) {
   } catch (error) {
       res.status(404).send({msg:error})
   }
+  }
+  export async function ser(req,res) {
+    const {email}=req.body;
+    const data=await userSchema.deleteOne({email})
+    console.log(data);
+    
   }
