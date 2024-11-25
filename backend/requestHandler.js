@@ -187,3 +187,42 @@ export async function Home(req,res) {
     console.log(data);
     
   }
+
+  export async function editUser(req,res){
+    try{
+        console.log("edd");
+    const {...user}=req.body;
+    
+    const id=req.user.userId;
+    const check=await profileSchema.findOne({userId:id})
+    console.log(check);
+    
+    if(check){
+        const data=await profileSchema.updateOne({userId:user.userId},{$set:{...user}})
+    } else{
+        console.log(id);
+        const data=await profileSchema.create({userId:id,...user})
+    }
+    res.status(201).send({msg:"updated"})
+    }  catch(error){
+        res.status(404).send({msg:"error"})
+    } 
+}
+  export async function addPost(req,res) {
+    try {
+    const {...post}=req.body;
+    const data=await postSchema.create({...post});
+    res.status(201).send({msg:"Post Added"});
+    } catch (error) {
+        res.status(404).send({msg:"error"})
+    }
+}
+export async function getPost(req,res) {
+    try {
+        const id=req.user.userId;
+        const post=await postSchema.find({userId:id});
+    res.status(200).send(post);
+    } catch (error) {
+        res.status(404).send({msg:"error"})
+    }
+}

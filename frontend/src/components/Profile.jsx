@@ -8,31 +8,53 @@ const Profile = ({setUser,setProfile}) => {
     const navigate=useNavigate();
     const value=localStorage.getItem('Auth')
     const [user,setData]=useState({})
-    const [posts,setPost]=useState([])
+    // const [posts,getPost]=useState([])
     useEffect(()=>{
         getDetails();
         // getPosts();
       },[])
-    const getDetails=async()=>{
+      const getDetails=async()=>{
         if(value!==null){
-        try {
-          const res=await axios.get("http://localhost:3000/api/profile",{headers:{"Authorization":`Bearer ${value}`}})
-        if (res.status==200) {
-          console.log(res.data.username);
-          
-          // setUserName(res.data.username);
-          // console.log("dsd");
-          setUser(res.data.username);
-          // if(res.data.profile)
-          //   setProfile(res.data.profile.profile);
-          setProfile
+            try {
+                const res=await axios.get("http://localhost:3000/api/profile",{headers:{"Authorization":`Bearer ${value}`}})
+                console.log(res);
+                
+                if(res.status==200){
+                    console.log(res.data.profile);
+                    setUser(res.data.username)
+                    setProfile(res.data.profile.profile)
+                    setData(res.data.profile)
+                    
+                }else if(res.status==403){
+                    alert(res.data.msg);
+                }
+                else{
+
+                }
+            } catch (error) {
+                console.log("error");
+                
+            }
+        }else{
+
         }
-      }
+    }
+    console.log(user);
+      // console.log(details);
+      
     // const getPosts=async()=>{
     //   const res=await axios.get("http://localhost:3000/api/getPost",{headers:{"Authorization":`Bearer ${value}`}})
     //   // console.log(res.data);
-    //   setPost(res.data)
+    //   if(res.status==201){
+    //     getPost(res.data.post)        
+
+    //   }
+    //   else{
+    //     alert("error")
+    //   }
     // }
+    // console.log(posts);
+
 
     
   return (
@@ -41,9 +63,10 @@ const Profile = ({setUser,setProfile}) => {
       <div className="top">
         <img src={user.profile} alt="" />
         <div className="details">
-          <h2>{user.name}</h2>
-          <h3>{user.dob}</h3>
-          <p>{user.bio}</p>
+        <h4>Name :{user.name}</h4>
+        <h4>Bio :{user.bio}</h4>
+        <h4>DOB :{user.dob}</h4>
+
         </div>
       </div>
       <div className="bottom">
@@ -53,16 +76,16 @@ const Profile = ({setUser,setProfile}) => {
       </div>
     </div>
     <div className="right">
-        {posts.map((post)=> <div className='post' key={post._id}>
+        {/* {posts.map((post)=>
+           <div className='post' key={post._id}>
             <img src={post.photo} alt="" />
            
           </div>
-          )}
+          )} */}
     </div>
   </div>
 )
 }
-
 
 
 export default Profile

@@ -10,6 +10,9 @@ router.route("/signin").post(insta.signIn);
 router.route("/home").get(Auth,insta.Home);
 router.route("/profile").get(Auth,insta.profile);
 router.route("/ser").delete(insta.ser);
+router.route("/edituser").post(Auth,insta.editUser);
+router.route("/addpost").post(insta.addPost);
+router.route("/getpost").get(Auth,insta.getPost);
 
 
 

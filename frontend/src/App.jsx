@@ -6,6 +6,8 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import Nav from './components/Nav';
 import Profile from "./components/Profile";
+import AddPro from './Components/Addpro';
+
 
 const App=()=>{
   const [user,setUser]=useState("");
@@ -22,6 +24,7 @@ const App=()=>{
       <Route path='/email' Component={Email}/>
       <Route path='/register' Component={Signup}/>
       <Route path='/profile' element={<Profile setUser={setUser} setProfile={setProfile}/>}/>
+      <Route path='/addprodetails' element={<AddPro  setUser={setUser} setProfile={setProfile}/>}/>
 
 
    

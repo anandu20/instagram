@@ -23,6 +23,8 @@
                 height: 150px;
                 width: 150px;
                 border-radius: 50%;
+                border: 1px solid red;
+                margin-right: 250px;
             }
             .details{
                 height: 30%;
@@ -31,6 +33,7 @@
                 flex-direction: column;
                 gap: 10px;
                 align-items: left;
+                font-size: 20px;
             }
         }
         .bottom{
