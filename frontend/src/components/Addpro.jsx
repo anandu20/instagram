@@ -1,7 +1,7 @@
 import React ,{useState,useEffect}from "react";
 import axios from "axios"
 import {useNavigate} from "react-router-dom"
-import "../CSS/AddPro.scss"
+import '../css/Addpro.scss'
 
 function AddPro({setUser,setProfile}){
     const navigate=useNavigate();
@@ -16,7 +16,7 @@ function AddPro({setUser,setProfile}){
         getDetails();
     },[])
     const getDetails=async()=>{
-        console.log("jjjj");
+        console.log("hiiii");
         
         if(value!==null){
             try {
@@ -57,6 +57,7 @@ function AddPro({setUser,setProfile}){
         alert(res.data.msg)
     }
 };
+   console.log(user);
 const handleChange=(e)=>{
     // console.log(e.target.value);
     userDetails((pre)=>({...pre,[e.target.name]:e.target.value}))

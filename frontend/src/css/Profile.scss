@@ -12,6 +12,7 @@
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
+        background-color: #e8ecf0;
         .top{
             height: 50%;
             width: 100%;
@@ -24,7 +25,7 @@
                 width: 150px;
                 border-radius: 50%;
                 border: 1px solid red;
-                margin-right: 250px;
+                margin-right: 300px;
             }
             .details{
                 height: 30%;
@@ -33,7 +34,7 @@
                 flex-direction: column;
                 gap: 10px;
                 align-items: left;
-                font-size: 20px;
+                font-size: 16px;
             }
         }
         .bottom{

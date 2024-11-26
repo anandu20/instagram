@@ -6,7 +6,7 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import Nav from './components/Nav';
 import Profile from "./components/Profile";
-import AddPro from './Components/Addpro';
+import AddPro from "./components/Addpro";
 
 
 const App=()=>{
@@ -17,7 +17,7 @@ const App=()=>{
 
   return(
     <BrowserRouter>
-    {user&&<Nav user={user}/>}
+    {user&&<Nav user={user} profile={profile}/>}
     <Routes>
       <Route path='/' element={<Home setUser={setUser}/>}/>
       <Route path='/login' Component={Login}/>

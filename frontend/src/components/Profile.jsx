@@ -18,12 +18,14 @@ const Profile = ({setUser,setProfile}) => {
             try {
                 const res=await axios.get("http://localhost:3000/api/profile",{headers:{"Authorization":`Bearer ${value}`}})
                 console.log(res);
-                
                 if(res.status==200){
                     console.log(res.data.profile);
                     setUser(res.data.username)
-                    setProfile(res.data.profile.profile)
+                    if(res.data.profile){
+
+                      setProfile(res.data.profile.profile)
                     setData(res.data.profile)
+                    }
                     
                 }else if(res.status==403){
                     alert(res.data.msg);
@@ -63,9 +65,9 @@ const Profile = ({setUser,setProfile}) => {
       <div className="top">
         <img src={user.profile} alt="" />
         <div className="details">
-        <h4>Name :{user.name}</h4>
-        <h4>Bio :{user.bio}</h4>
-        <h4>DOB :{user.dob}</h4>
+        <h4>{user.name}</h4>
+        <h4>{user.bio}</h4>
+        <h4>{user.dob}</h4>
 
         </div>
       </div>

@@ -1,4 +1,5 @@
 import userSchema from "./models/user.model.js";
+import profileSchema from './models/profile.model.js'
 import bcrypt from "bcrypt";
 import pkg from "jsonwebtoken";
 import nodemailer from "nodemailer";
@@ -159,8 +160,10 @@ export async function profile(req,res){
             if(!user){
                 return res.status(403).send({msg:"Unauthorized Access"})
             }
-            // const profile=await profileSchema.findOne({userId:_id})
-            res.status(200).send({username:user.username})
+            const profile=await profileSchema.findOne({userId:_id})
+            console.log(profile);
+            
+            res.status(200).send({username:user.username,profile})
         }catch(error){
             res.status(404).send({msg:"error"})
         }
